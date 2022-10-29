@@ -6,7 +6,7 @@ const Header = ({query, setQuery, filterResults}) => {
     <header>
       <Navbar bg="white" expand="sm" fixed="top">
         <Container fluid>
-          <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+          <Navbar.Brand href="#">Contact Book</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav

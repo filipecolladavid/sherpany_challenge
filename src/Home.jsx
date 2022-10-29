@@ -4,11 +4,14 @@ import { Row, Spinner } from "react-bootstrap";
 
 import Header from "./Header";
 import ContactCard from "./ContactCard";
+import ModalContact from "./ModalContact";
 
 const Home = ({ loading, error, users, hasMore, setPageNumber }) => {
   const [query, setQuery] = useState("");
   const [filteredRes, setFilteredRes] = useState([]);
   const [isInfinite, setIsInfinite] = useState(true);
+  const [show, setShow] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
   const observer = useRef()
   const lastUserFetched = useCallback(node => {
@@ -32,10 +35,19 @@ const Home = ({ loading, error, users, hasMore, setPageNumber }) => {
     }
     else if (queryValues[0]) {
       setFilteredRes(users.filter(user => user.name.first === queryValues[0]));
-      console.log(filteredRes);
     }
     else setIsInfinite(true);
   }
+
+  const handleClose = () => {
+    setShow(false);
+    setUserInfo(null);
+  };
+  const handleShow = (user) => {
+    setUserInfo(user);
+    console.log(user);
+    setShow(true);
+  };
 
   return (
     <>
@@ -45,17 +57,25 @@ const Home = ({ loading, error, users, hasMore, setPageNumber }) => {
           {error ? <>Something went wrong</> :
             isInfinite ?
               <>
-                {users.map((user, index) => {
-                  if (index + 1 === users.length) return <ContactCard index={index} contact={user} refLast={lastUserFetched} />
-                  return <ContactCard index={index} contact={user} />
-                })}
+                {users.length !== 0 ?
+                  users.map((user, index) => {
+                    if (index + 1 === users.length) return <ContactCard handleShow={handleShow} index={index} contact={user} refLast={lastUserFetched} />
+                    return <ContactCard handleShow={handleShow} index={index} contact={user} />
+                  })
+                  :
+                  <>No users to be shown</>
+                }
               </>
               :
               <>
-                Filtered Results
-                {filteredRes.map((user, index) => {
-                  return <ContactCard index={index} contact={user} />
-                })}
+                <div>
+                  Filtered Results:
+                </div>
+                {filteredRes.length === 0 ? <>No users </> :
+                  filteredRes.map((user, index) => {
+                    return <ContactCard handleShow={handleShow} index={index} contact={user} />
+                  })
+                }
               </>
           }
         </Row>
@@ -67,10 +87,13 @@ const Home = ({ loading, error, users, hasMore, setPageNumber }) => {
                   <span className="visually-hidden">Loading...</span>
                 </Spinner>}
               {!hasMore &&
-                <>You've reach the end</>}</>
+                <>end of users catalog.</>}</>
           }
         </Row>
       </div>
+      {userInfo &&
+        <ModalContact show={show} handleClose={handleClose} contact={userInfo} />
+      }
     </>
   );
 }

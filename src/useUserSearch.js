@@ -13,7 +13,6 @@ export default function useUserSearch(nat, pageNumber) {
 
     let natString = "";
     for(let n in nat) {
-      console.log(nat[n]);
       natString+=nat[n]+","
     }
 

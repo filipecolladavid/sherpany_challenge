@@ -1,12 +1,18 @@
 import { Col, Card } from "react-bootstrap";
 
-const ContactCard = ({ index, contact, refLast }) => {
+const ContactCard = ({ handleShow, index, contact, refLast }) => {
   return (
-    <Card key={contact.name.first + "_" + index} ref={refLast} className="mx-1 my-1" style={{width:"35rem", flexDirection:"row", alignItems:"center", padding:"10px"}}>
-      <Col md = {2}>
-        <Card.Img variant="top" src={contact.picture.thumbnail}/>
+    <Card
+      key={contact.name.first + "_" + index}
+      ref={refLast}
+      className="mx-1 my-1"
+      style={{ width: "35rem", flexDirection: "row", alignItems: "center", padding: "10px" }}
+      onClick={()=>handleShow(contact)}
+    >
+      <Col md={2}>
+        <Card.Img variant="top" src={contact.picture.thumbnail} />
       </Col>
-      <Col md = {10}>
+      <Col md={10}>
         <Card.Body>
           <Card.Title>{contact.name.first} {contact.name.last}</Card.Title>
           <Card.Text>
