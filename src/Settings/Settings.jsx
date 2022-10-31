@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
+import ConfirmationModal from "./ConfirmationModal";
 
 import "./settings.css"
 
 const Settings = ({ setNat, nat, options, setUsers }) => {
 
   const [checkedArray, setCheckedArray] = useState(null);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     function mapArray() {
@@ -29,8 +31,8 @@ const Settings = ({ setNat, nat, options, setUsers }) => {
     }
     setNat(newNat);
     sessionStorage.setItem('nat', JSON.stringify(newNat))
+    setShow(true);
     setUsers([]);
-    alert("Submited with success");
   }
 
   return (
@@ -48,7 +50,7 @@ const Settings = ({ setNat, nat, options, setUsers }) => {
                 <div
                   key={option + "_" + index}
                   className="optionNat"
-                  >
+                >
                   <input
                     type="checkbox"
                     value={option}
@@ -67,6 +69,7 @@ const Settings = ({ setNat, nat, options, setUsers }) => {
         </div>
         <Button onClick={submitNat}>Submit</Button>
       </div>
+      {show && <ConfirmationModal show={show} />}
     </>
   );
 }
