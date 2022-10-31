@@ -7,11 +7,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import useUserSearch from "./useUserSearch"
 
-import Home from "./Home";
-import Settings from "./Settings";
+import Home from "./Home/Home";
+import Settings from "./Settings/Settings";
 const App = () => {
   const options = ["CH", "ES", "FR", "GB"];
-  const [nat, setNat] = useState([]);
+  const [nat, setNat] = useState(JSON.parse(sessionStorage.getItem('nat')) ? JSON.parse(sessionStorage.getItem('nat')) : []);
   const [pageNumber, setPageNumber] = useState(1);
   const { loading, error, users, setUsers, hasMore } = useUserSearch(nat, pageNumber);
   

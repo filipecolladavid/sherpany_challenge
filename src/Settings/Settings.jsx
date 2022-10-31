@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
+
+import "./settings.css"
 
 const Settings = ({ setNat, nat, options, setUsers }) => {
 
@@ -25,24 +28,27 @@ const Settings = ({ setNat, nat, options, setUsers }) => {
       }
     }
     setNat(newNat);
+    sessionStorage.setItem('nat', JSON.stringify(newNat))
     setUsers([]);
     alert("Submited with success");
   }
 
   return (
     <>
-      <div style={{ margin: "20px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignContent: "center" }}>
+      <div className="header">
         <Link to="/"><IoIosArrowBack size={50} /></Link>
-        <h1 style={{ marginLeft: "20px" }}>Settings</h1>
+        <h1 className="title">Settings</h1>
       </div>
-      <div style={{ marginLeft: "100px" }}>
+      <div className="container">
         <h2>Select nationality</h2>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+        <div>
           {checkedArray &&
             options.map((option, index) => {
               return (
                 <div
-                  key={option + "_" + index}>
+                  key={option + "_" + index}
+                  className="optionNat"
+                  >
                   <input
                     type="checkbox"
                     value={option}
@@ -53,13 +59,13 @@ const Settings = ({ setNat, nat, options, setUsers }) => {
                       newArray[index] = !checkedArray[index]
                       setCheckedArray(newArray);
                     }} />
-                  {option}
+                  <div>{option}</div>
                 </div>
               );
             })
           }
         </div>
-        <button onClick={submitNat}>Submit</button>
+        <Button onClick={submitNat}>Submit</Button>
       </div>
     </>
   );

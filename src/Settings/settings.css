@@ -1,0 +1,23 @@
+.header {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center 
+}
+
+.header h1 {
+  margin-left:35px
+}
+
+.optionNat {
+  display: flex;
+}
+
+.optionNat *{
+  margin-left: 10px;
+}
+
+.btn {
+  margin:9px;
+}

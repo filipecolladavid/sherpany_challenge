@@ -11,13 +11,12 @@ const Header = ({query, setQuery, filterResults}) => {
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: '100px' }}
               navbarScroll
             >
               <Link className="nav-link" to="/">Home</Link>
               <Link className="nav-link" to="/settings">Settings</Link>
             </Nav>
-            <Form className="d-flex">
+            <Form className="d-flex" onSubmit={(e)=>filterResults(e)}>
               <Form.Control
                 type="search"
                 placeholder="Search"
@@ -26,7 +25,7 @@ const Header = ({query, setQuery, filterResults}) => {
                 value={query}
                 onChange={(e)=>setQuery(e.target.value)}
               />
-              <Button variant="outline-success" onClick={(e)=>filterResults(e)} onSubmit={(e)=>filterResults(e)}>Search</Button>
+              <Button variant="outline-success" onClick={(e)=>filterResults(e)} >Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>

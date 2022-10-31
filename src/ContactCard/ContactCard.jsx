@@ -1,3 +1,5 @@
+
+import "./contactCard.css"
 import { Col, Card } from "react-bootstrap";
 
 const ContactCard = ({ handleShow, index, contact, refLast }) => {
@@ -5,8 +7,6 @@ const ContactCard = ({ handleShow, index, contact, refLast }) => {
     <Card
       key={contact.name.first + "_" + index}
       ref={refLast}
-      className="mx-1 my-1"
-      style={{ width: "35rem", flexDirection: "row", alignItems: "center", padding: "10px" }}
       onClick={()=>handleShow(contact)}
     >
       <Col md={2}>

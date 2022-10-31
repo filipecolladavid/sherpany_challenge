@@ -1,0 +1,11 @@
+.card {
+  width: 30rem;
+  flex-direction: row; 
+  align-items: center;
+  padding: 1rem;
+  margin:0.5rem;
+}
+
+.card:hover img {
+  cursor: pointer;
+}

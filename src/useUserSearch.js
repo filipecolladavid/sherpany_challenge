@@ -25,7 +25,7 @@ export default function useUserSearch(nat, pageNumber) {
         url: "https://randomuser.me/api",
         params: { results: 50, page: pageNumber, nat: natString },
       }).then((res) => {
-        console.log(res.data.results);
+        // console.log(res.data.results);
         setUsers((prevUsers) => {
           return [...prevUsers, ...res.data.results];
         });

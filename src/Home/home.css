@@ -1,0 +1,11 @@
+.row {
+  justify-content: center;
+}
+
+.gridContainer {
+  margin-top: 80px;
+}
+
+.statusMessage {
+  text-align: center;
+}

@@ -1,4 +1,5 @@
 import { Modal, Button, Row, Col } from "react-bootstrap"
+import "./modalContact.css"
 
 const ModalContact = ({ show, handleClose, contact }) => {
   return (
@@ -7,31 +8,31 @@ const ModalContact = ({ show, handleClose, contact }) => {
         <Modal.Title>Contact Info</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Row style={{ alignItems: "center" }}>
+        <Row>
           <Col md={4}>
             <img src={contact.picture.thumbnail} alt="thumbnail" style={{ height: "100px" }}></img>
           </Col>
           <Col md={8}>
-            {contact.name.title}. {contact.name.first} {contact.name.last}
+            <b>Name:</b> {contact.name.title}. {contact.name.first} {contact.name.last}
             <br></br>
             <b>Username:</b> {contact.login.username}
             <br></br>
             <b>Email:</b> {contact.email}
           </Col>
         </Row>
-        <Row style={{ marginTop: "20px", alignContent: "center" }}>
+        <Row>
           <Col>
-            Street: {contact.location.street.name}, {contact.location.street.number}
+            <b>Street:</b> {contact.location.street.name}, {contact.location.street.number}
             <br></br>
-            City: {contact.location.city}
+            <b>City:</b> {contact.location.city}
             <br></br>
-            State: {contact.location.state}
+            <b>State:</b> {contact.location.state}
             <br></br>
-            Postcode: {contact.location.postcode}
+            <b>Postcode:</b> {contact.location.postcode}
             <br></br>
-            Phone: {contact.phone}
+            <b>Phone:</b> {contact.phone}
             <br></br>
-            Cell: {contact.cell}
+            <b>Cell:</b> {contact.cell}
           </Col>
         </Row>
       </Modal.Body>

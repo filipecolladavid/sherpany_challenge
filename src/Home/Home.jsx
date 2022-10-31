@@ -2,9 +2,11 @@ import { useState, useRef, useCallback } from "react";
 
 import { Row, Spinner } from "react-bootstrap";
 
-import Header from "./Header";
-import ContactCard from "./ContactCard";
-import ModalContact from "./ModalContact";
+import "./home.css"
+
+import Header from "../Header/Header";
+import ContactCard from "../ContactCard/ContactCard";
+import ModalContact from "../ModalContact/ModalContact";
 
 const Home = ({ loading, error, users, hasMore, setPageNumber }) => {
   const [query, setQuery] = useState("");
@@ -52,26 +54,22 @@ const Home = ({ loading, error, users, hasMore, setPageNumber }) => {
   return (
     <>
       <Header query={query} setQuery={setQuery} filterResults={filterResults} />
-      <div style={{ marginTop: "80px" }}>
-        <Row style={{ justifyContent: "center" }}>
-          {error ? <>Something went wrong</> :
+      <div className="gridContainer">
+        <Row className="gx-0">
+          {error ?
+            <div className="statusMessage">Something went wrong</div>
+            :
             isInfinite ?
-              <>
-                {users.length !== 0 ?
-                  users.map((user, index) => {
-                    if (index + 1 === users.length) return <ContactCard handleShow={handleShow} index={index} contact={user} refLast={lastUserFetched} />
-                    return <ContactCard handleShow={handleShow} index={index} contact={user} />
-                  })
-                  :
-                  <>No users to be shown</>
-                }
-              </>
+              users.map((user, index) => {
+                if (index + 1 === users.length) return <ContactCard handleShow={handleShow} index={index} contact={user} refLast={lastUserFetched} />
+                return <ContactCard handleShow={handleShow} index={index} contact={user} />
+              })
               :
               <>
-                <div>
-                  Filtered Results:
-                </div>
-                {filteredRes.length === 0 ? <>No users </> :
+                <div className="statusMessage">Filtered Results:</div>
+                {filteredRes.length === 0 ?
+                  <div className="statusMessage">No users </div>
+                  :
                   filteredRes.map((user, index) => {
                     return <ContactCard handleShow={handleShow} index={index} contact={user} />
                   })
@@ -79,7 +77,7 @@ const Home = ({ loading, error, users, hasMore, setPageNumber }) => {
               </>
           }
         </Row>
-        <Row style={{ justifyContent: "center" }}>
+        <Row className="gx-0">
           {isInfinite &&
             <>
               {loading &&
@@ -87,7 +85,7 @@ const Home = ({ loading, error, users, hasMore, setPageNumber }) => {
                   <span className="visually-hidden">Loading...</span>
                 </Spinner>}
               {!hasMore &&
-                <>end of users catalog.</>}</>
+                <div className="statusMessage">end of users catalog.</div>}</>
           }
         </Row>
       </div>
