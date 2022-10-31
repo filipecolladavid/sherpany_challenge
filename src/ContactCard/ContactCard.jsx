@@ -7,7 +7,7 @@ const ContactCard = ({ handleShow, index, contact, refLast }) => {
     <Card
       key={contact.name.first + "_" + index}
       ref={refLast}
-      onClick={()=>handleShow(contact)}
+      onClick={() => handleShow(contact)}
     >
       <Col md={2}>
         <Card.Img variant="top" src={contact.picture.thumbnail} />
@@ -17,10 +17,9 @@ const ContactCard = ({ handleShow, index, contact, refLast }) => {
           <Card.Title>{contact.name.first} {contact.name.last}</Card.Title>
           <Card.Text>
             Username: {contact.login.username}
-            <br></br>
-            Email: {contact.email}
           </Card.Text>
           <Card.Text>
+            Email: {contact.email}
           </Card.Text>
         </Card.Body>
       </Col>
